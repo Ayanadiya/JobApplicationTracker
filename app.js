@@ -9,11 +9,12 @@ const sequelize=require('./Util/db');
 
 const homeRouter=require('./Routes/home');
 const userRouter=require('./Routes/user');
+const profileRouter=require('./Routes/profile');
 const errorController=require('./Controller/error');
 
 
 const User=require('./Model/user');
-
+const Profile=require('./Model/profile');
 
 const app=express();
 
@@ -26,9 +27,13 @@ app.use(express.static(path.join(__dirname, 'Views')));
 
 app.use('/', homeRouter);
 app.use('/user', userRouter);
+app.use('/profile', profileRouter);
 app.use(errorController.errorpage);
 
-sequelize.sync()
+User.hasOne(Profile);
+Profile.belongsTo(User);
+
+sequelize.sync({alter:true})
 .then(result => {
     console.log("Database ready");
     app.listen(process.env.PORT);  

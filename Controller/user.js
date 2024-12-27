@@ -1,4 +1,5 @@
 const User=require('../Model/user');
+const Profile=require('../Model/profile');
 
 const path=require('path');
  
@@ -74,6 +75,27 @@ exports.postlogin= async (req,res, next) => {
     }
 }
 
+exports.getUserDetails = async (req,res,next) => {
+    try {
+        const userId=req.user.id;
+        const profile= await Profile.findOne({where:{userId:userId}});
+        if(!profile)
+        {
+            return res.status(200).json({message: 'Profile not found for the user',user:req.user,  profile: {
+                jobPreference: '',
+                locationPreference: '',
+                phone: '',
+                address: '',
+                careerGoals: '',
+                role: ''
+            }})
+        }
+        res.status(200).json({user:req.user, profile:profile});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message:'backend error', error});
+    }
+}
 
 
 

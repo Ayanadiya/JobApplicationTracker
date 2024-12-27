@@ -17,26 +17,10 @@ const User= sequelize.define('users', {
         allowNull:false,
         unique:true
     },
-    phone:{
-        type:Sequelize.STRING,
-        allowNull:false
-    },
     password:{
         type:Sequelize.STRING,
         allowNull:false
-    },
-    careerGoals: {
-        type: Sequelize.STRING,
-        allowNull: true,  // Optional, as career goals may be updated over time
-      },
-      jobPreference: {
-        type: Sequelize.STRING,  // For example: 'Remote', 'On-site', etc.
-        allowNull: true,
-      },
-      locationPreference: {
-        type: Sequelize.STRING,  // For example: 'New York', 'Remote', etc.
-        allowNull: true,
-      }
+    }
 });
 
 module.exports=User;

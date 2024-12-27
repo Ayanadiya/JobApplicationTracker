@@ -12,3 +12,11 @@ exports.signuppage = (req, res) => {
 exports.loginpage = (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'views' , 'login.html'));
 }
+
+exports.homepage = (req,res) => {
+    res.sendFile(path.join(__dirname, '../', 'Views', 'home.html'));
+}
+
+exports.profilepage = (req,res) => {
+    res.sendFile(path.join(__dirname, '../', 'Views', 'profile.html'));
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Job Application Tracker</title>
+    
+    <!-- Bootstrap 4 CSS (or Bootstrap 5, depending on the version you use) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Optionally, add custom CSS (not mandatory) -->
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        nav a {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="bg-success text-white py-4">
+        <div class="container text-center ">
+            <h1>Job Application Tracker</h1>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Job Tracker</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#applications">Applications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reports">Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Section -->
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Welcome to your Job Application Tracker!</h2>
+        <p class="text-center mb-5">Keep track of your job applications, deadlines, interview schedules, and much more in one place.</p>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard">
+            <h3>Dashboard</h3>
+            <p>This is your job application dashboard where you can get an overview of your job applications and their status.</p>
+        </section>
+
+        <!-- Applications Section -->
+        <section id="applications">
+            <h3>Your Applications</h3>
+            <p>Track all your job applications here, view their status, and add new ones.</p>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile">
+            <h3>Your Profile</h3>
+            <p>Update your profile and resume here.</p>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports">
+            <h3>Reports</h3>
+            <p>View your job application progress, success rate, and more detailed reports.</p>
+        </section>
+    </div>
+
+    <!-- Bootstrap 4 JS (Optional but useful for modals, tooltips, etc.) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
