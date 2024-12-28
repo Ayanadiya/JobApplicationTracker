@@ -12,7 +12,8 @@ const cron=require('./services/cronsendEmail');
 const homeRouter=require('./Routes/home');
 const userRouter=require('./Routes/user');
 const profileRouter=require('./Routes/profile');
-const applicationRouter=require('./Routes/application')
+const applicationRouter=require('./Routes/application');
+const companyRouter=require('./Routes/company');
 const errorController=require('./Controller/error');
 
 
@@ -20,6 +21,7 @@ const User=require('./Model/user');
 const Profile=require('./Model/profile');
 const Application=require('./Model/application');
 const Reminder=require('./Model/reminder');
+const Company=require('./Model/company');
 
 const app=express();
 
@@ -40,6 +42,7 @@ app.use('/', homeRouter);
 app.use('/user', userRouter);
 app.use('/profile', profileRouter);
 app.use('/application', applicationRouter);
+app.use('/company', companyRouter);
 app.use(errorController.errorpage);
 
 User.hasOne(Profile);
@@ -50,8 +53,10 @@ User.hasMany(Reminder);
 Reminder.belongsTo(User);
 Application.hasMany(Reminder);
 Reminder.belongsTo(Application);
+User.hasMany(Company);
+Company.belongsTo(User);
 
-sequelize.sync({alter:true})
+sequelize.sync()
 .then(result => {
     console.log("Database ready");
     app.listen(process.env.PORT);  

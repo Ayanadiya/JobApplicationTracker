@@ -24,3 +24,7 @@ exports.profilepage = (req,res) => {
 exports.applicationpage = (req,res) => {
     res.sendFile(path.join(__dirname, '../', 'Views', 'application.html'));
 }
+
+exports.companypage = (req,res) => {
+    res.sendFile(path.join(__dirname, '../', 'Views', 'company.html'));
+}

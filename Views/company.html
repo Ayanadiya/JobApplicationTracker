@@ -63,11 +63,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Dashboard</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Applications<span class="sr-only">(current)</span></a>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/home/company">Companies</a>
+                        <a class="nav-link" href="/home/applications">Applications</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Companies<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/home/profile">Profile </a>
@@ -82,76 +82,59 @@
 
     <div class="container my-4">
         <div class="d-flex justify-content-between">
-            <button class="btn btn-success" data-toggle="modal" data-target="#addApplicationModal">Add Application</button>
+            <button class="btn btn-success" data-toggle="modal" data-target="#addCompanyModal">Add Company</button>
         </div>
 
         <!-- Row Layout for List and Details -->
         <div class="row mt-4">
-            <!-- Left Side: Applications List -->
-            <div class="col-md-4 applications-list" id="applications-list">
-                <h1>Applications</h1>
-                <!-- Application Items will be dynamically populated here -->
-                 <ul id="applicationlist"></ul>
+            <!-- Left Side: Company List -->
+            <div class="col-md-4 company-list" id="company-list">
+                <h1>Companies</h1>
+                <!-- Company Items will be dynamically populated here -->
+                 <ul id="companylist"></ul>
             </div>
 
-            <!-- Right Side: Application Details -->
-            <div class="col-md-8 application-details" id="application-details">
-                <h3>Application Details</h3>
-                <p id="applndetailpara">Select an application from the list to view details.</p>
+            <!-- Right Side: Company Details -->
+            <div class="col-md-8 company-details" id="company-details">
+                <h3>Company Details</h3>
+                <p id="companydetailpara">Select a company from the list to view details.</p>
             </div>
         </div>
     </div>
 
     <!-- Modal for Adding Application -->
-    <div class="modal fade" id="addApplicationModal" tabindex="-1" role="dialog" aria-labelledby="addApplicationModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addCompanyModal" tabindex="-1" role="dialog" aria-labelledby="addCompanyModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addApplicationModalLabel">Add New Application</h5>
+                    <h5 class="modal-title" id="addCompanyModalLabel">Add New Company</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="addApplicationForm">
+                    <form id="addCompanyForm">
                         <div class="form-group">
-                            <label for="jobTitle">Job Title</label>
-                            <input type="text" class="form-control" id="jobTitle" required>
+                            <label for="name">Company Name</label>
+                            <input type="text" class="form-control" id="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="company">Company</label>
-                            <input type="text" class="form-control" id="company" required>
+                            <label for="size">Size</label>
+                            <input type="text" class="form-control" id="size" required>
                         </div>
                         <div class="form-group">
-                            <label for="jobTitle">Job Description</label>
-                            <input type="text" class="form-control" id="jobDescription" required>
+                            <label for="industry">Industry</label>
+                            <input type="text" class="form-control" id="industry" required>
                         </div>
                         <div class="form-group">
-                            <label for="applicationDate">Application Date</label>
-                            <input type="date" class="form-control" id="applicationDate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="status">Status</label>
-                            <select class="form-control" id="status" required>
-                                <option value="Applied">Applied</option>
-                                <option value="Interviewing">Interviewing</option>
-                                <option value="Offer Received">Offer Received</option>
-                                <option value="Rejected">Rejected</option>
-                            </select>
+                            <label for="contact">Contact</label>
+                            <input type="text" class="form-control" id="contact" required>
                         </div>
                         <div class="form-group">
                             <label for="notes">Notes</label>
                             <textarea class="form-control" id="notes" rows="3"></textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="jobTitle">Resume</label>
-                            <input type="file" class="form-control" id="resume" >
-                        </div>
-                        <div class="form-group">
-                            <label for="jobTitle">Cover Letter</label>
-                            <input type="file" class="form-control" id="cv" >
-                        </div>
-                        <button type="submit" class="btn btn-success" id="SaveApplicationbtn">Save Application</button>
+                        <button type="submit" class="btn btn-success" id="SaveCompanybtn">Save Company</button>
                     </form>
                 </div>
             </div>
@@ -161,7 +144,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
-    <script src="/application.js"></script>
+    <script src="/company.js"></script>
 
 </body>
 </html>
