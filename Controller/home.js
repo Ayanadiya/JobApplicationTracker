@@ -20,3 +20,7 @@ exports.homepage = (req,res) => {
 exports.profilepage = (req,res) => {
     res.sendFile(path.join(__dirname, '../', 'Views', 'profile.html'));
 }
+
+exports.applicationpage = (req,res) => {
+    res.sendFile(path.join(__dirname, '../', 'Views', 'application.html'));
+}

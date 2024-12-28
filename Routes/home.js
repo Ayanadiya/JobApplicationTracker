@@ -14,4 +14,6 @@ router.get('/home', homeController.homepage);
 
 router.get('/home/profile', homeController.profilepage);
 
+router.get('/home/applications', homeController.applicationpage);
+
 module.exports=router;
