@@ -193,6 +193,7 @@ function viewapplication(applnId) {
 };
 
 function setReminder(applicationId, userId) {
+    const token=localStorage.getItem('token');
     // Prompt user to set reminder for a specific application
     const reminderDate = prompt("Enter reminder date (YYYY-MM-DD):");
     

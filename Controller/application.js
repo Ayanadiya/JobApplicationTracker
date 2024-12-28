@@ -1,5 +1,6 @@
 const { where } = require('sequelize');
 const Application= require('../Model/application');
+const Reminder= require('../Model/reminder');
 
 exports.getApplication=  async (req,res,next) => {
     try {
@@ -70,3 +71,20 @@ exports.getApplicationdetails= async (req,res,next) => {
         res.status(500).json(error);
     }   
 }
+
+exports.setReminder = async (req,res,next) => {
+    try {
+        const { applicationId, userId, reminderDate } = req.body;
+        // Create a new reminder in the database
+        const reminder = await Reminder.create({
+            reminderDate: new Date(reminderDate),
+            status:"pending",
+            userId:userId,
+            aplicationId:applicationId
+        });
+        res.status(201).json({ message: "Reminder set successfully", reminder });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Something went wrong" });
+    }
+};

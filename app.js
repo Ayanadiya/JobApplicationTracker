@@ -7,6 +7,7 @@ const fileUpload = require('express-fileupload');
 require('dotenv').config();
 
 const sequelize=require('./Util/db');
+const cron=require('./services/cronsendEmail');
 
 const homeRouter=require('./Routes/home');
 const userRouter=require('./Routes/user');
@@ -18,6 +19,7 @@ const errorController=require('./Controller/error');
 const User=require('./Model/user');
 const Profile=require('./Model/profile');
 const Application=require('./Model/application');
+const Reminder=require('./Model/reminder');
 
 const app=express();
 
@@ -44,8 +46,12 @@ User.hasOne(Profile);
 Profile.belongsTo(User);
 User.hasMany(Application);
 Application.belongsTo(User);
+User.hasMany(Reminder);
+Reminder.belongsTo(User);
+Application.hasMany(Reminder);
+Reminder.belongsTo(Application);
 
-sequelize.sync()
+sequelize.sync({alter:true})
 .then(result => {
     console.log("Database ready");
     app.listen(process.env.PORT);  

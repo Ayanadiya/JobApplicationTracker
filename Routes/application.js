@@ -16,4 +16,6 @@ router.post('/uploadfile', servicesMiddleware.uploadfile);
 
 router.get('/getapplicationdetail/:applnId', applicationController.getApplicationdetails);
 
+router.post('/setReminder', applicationController.setReminder);
+
 module.exports=router;
