@@ -18,4 +18,6 @@ router.get('/home/applications', homeController.applicationpage);
 
 router.get('/home/company', homeController.companypage);
 
+router.get('/home/Joblist', homeController.joblistingpage);
+
 module.exports=router;

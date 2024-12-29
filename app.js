@@ -14,6 +14,7 @@ const userRouter=require('./Routes/user');
 const profileRouter=require('./Routes/profile');
 const applicationRouter=require('./Routes/application');
 const companyRouter=require('./Routes/company');
+const joblistRouter=require('./Routes/joblist');
 const errorController=require('./Controller/error');
 
 
@@ -22,6 +23,7 @@ const Profile=require('./Model/profile');
 const Application=require('./Model/application');
 const Reminder=require('./Model/reminder');
 const Company=require('./Model/company');
+const Joblist=require('./Model/joblist');
 
 const app=express();
 
@@ -43,6 +45,7 @@ app.use('/user', userRouter);
 app.use('/profile', profileRouter);
 app.use('/application', applicationRouter);
 app.use('/company', companyRouter);
+app.use('/joblist', joblistRouter);
 app.use(errorController.errorpage);
 
 User.hasOne(Profile);
@@ -55,6 +58,8 @@ Application.hasMany(Reminder);
 Reminder.belongsTo(Application);
 User.hasMany(Company);
 Company.belongsTo(User);
+User.hasMany(Joblist);
+Joblist.belongsTo(User);
 
 sequelize.sync()
 .then(result => {
