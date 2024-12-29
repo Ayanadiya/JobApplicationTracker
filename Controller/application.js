@@ -1,4 +1,4 @@
-const { where } = require('sequelize');
+const { where, Op } = require('sequelize');
 const Application= require('../Model/application');
 const Reminder= require('../Model/reminder');
 const { application } = require('express');
@@ -127,3 +127,41 @@ exports.getapplicationsummary= async (req,res,next) =>{
         res.status(500).json(error);
     }
 }
+
+exports.getsearchapplication = async (req, res, next) => {
+    try {
+        const userId= req.user.id;
+        const { search, status, startDate} = req.query;
+
+        // Build dynamic where conditions based on filters
+        let whereConditions = { userId: userId };
+
+        if (search) {
+            // Search by Job Title or Company Name
+            whereConditions[Op.or] = [
+                { jobtitle: { [Op.like]: `%${search}%` } },
+                { company: { [Op.like]: `%${search}%` } }
+            ];
+        }
+
+        if (status) {
+            whereConditions.status = status; // Filter by status
+        }
+
+        if (startDate) {
+            // Filter by date
+            whereConditions.applydate = { [Op.gte]: new Date(startDate) };
+            };
+
+        // Fetch applications based on the dynamic conditions
+        const applications = await Application.findAll({
+            where: whereConditions
+        });
+
+        // Return filtered applications
+        res.status(200).json(applications);
+    } catch (error) {
+        console.log('Error fetching applications:', error);
+        res.status(500).json({ error: 'Failed to fetch applications' });
+    }
+};

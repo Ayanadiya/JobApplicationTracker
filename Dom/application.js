@@ -26,6 +26,11 @@ const saveapplnbtn=document.getElementById('SaveApplicationbtn');
 const applicationlist=document.getElementById('applicationlist');
 saveapplnbtn.addEventListener('click', saveapplication);
 
+const searchText = document.getElementById('searchText');
+const statusFilter = document.getElementById('statusFilter');
+const startDate = document.getElementById('startDate');
+const applyFilterBtn = document.getElementById('applyFilterBtn');
+
 let isUpdatingAppln=false;
 
 function addToapplnlist(application){
@@ -212,3 +217,44 @@ function setReminder(applicationId, userId) {
         });
     }
 }
+
+function fetchApplications() {
+    const token = localStorage.getItem('token');
+    
+    let searchQuery = searchText.value || ''; // Get the search query (Company or Job Title)
+    let status = statusFilter.value || ''; // Get the selected status
+    let start = startDate.value || ''; // Get the start date
+
+    const queryParams = new URLSearchParams({
+        search: searchQuery,
+        status: status,
+        startDate: start
+    });
+
+    axios.get(`http://127.0.0.1:3000/application/getsearchapplications?${queryParams.toString()}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+    })
+    .then(res => {
+        const applications = res.data;
+        console.log('Received applications:', applications);
+
+        // Clear previous list
+        applicationlist.innerHTML = '';
+
+        if (Array.isArray(applications) && applications.length > 0) {
+            applications.forEach(application => {
+                addToapplnlist(application);
+            });
+        } else {
+            console.error('Expected an array of applications, but received:', applications);
+        }
+    })
+    .catch(error => {
+        console.log('Error fetching applications:', error);
+    });
+}
+
+// Event listener for Apply Filter button
+applyFilterBtn.addEventListener('click', () => {
+    fetchApplications(); // Fetch applications based on current filters
+});

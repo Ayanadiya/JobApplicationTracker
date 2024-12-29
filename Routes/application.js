@@ -20,4 +20,6 @@ router.post('/setReminder', applicationController.setReminder);
 
 router.get('/getapplicationsummary', userMiddleware.userAuthenticate, applicationController.getapplicationsummary);
 
+router.get('/getsearchapplications', userMiddleware.userAuthenticate, applicationController.getsearchapplication);
+
 module.exports=router;
