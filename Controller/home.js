@@ -14,7 +14,7 @@ exports.loginpage = (req, res) => {
 }
 
 exports.homepage = (req,res) => {
-    res.sendFile(path.join(__dirname, '../', 'Views', 'home.html'));
+    res.sendFile(path.join(__dirname, '../', 'Views', 'dashboard.html'));
 }
 
 exports.profilepage = (req,res) => {

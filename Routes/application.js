@@ -18,4 +18,6 @@ router.get('/getapplicationdetail/:applnId', applicationController.getApplicatio
 
 router.post('/setReminder', applicationController.setReminder);
 
+router.get('/getapplicationsummary', userMiddleware.userAuthenticate, applicationController.getapplicationsummary);
+
 module.exports=router;

@@ -40,3 +40,14 @@ exports.deletejoblist= async(req,res,next) =>{
         res.status(500).json(error);
     }   
 }
+
+exports.gettotaljobslist= async (req,res,next) => {
+    try {
+        const userId=req.user.id;
+        const totaljob= await Joblist.count({where:{userId:userId}});
+        res.status(200).json(totaljob)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}

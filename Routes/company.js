@@ -13,4 +13,6 @@ router.get('/getcompanydetails/:id', companyController.getCompanyDetails);
 
 router.put('/updatecompanydetails/:id', companyController.updateCompanydetails);
 
+router.get('/totalcompanies', userMiddleware.userAuthenticate, companyController.getTotalcompanies);
+
 module.exports= router;

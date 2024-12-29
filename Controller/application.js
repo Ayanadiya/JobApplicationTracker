@@ -1,6 +1,7 @@
 const { where } = require('sequelize');
 const Application= require('../Model/application');
 const Reminder= require('../Model/reminder');
+const { application } = require('express');
 
 exports.getApplication=  async (req,res,next) => {
     try {
@@ -88,3 +89,41 @@ exports.setReminder = async (req,res,next) => {
         res.status(500).json({ error: "Something went wrong" });
     }
 };
+
+exports.getapplicationsummary= async (req,res,next) =>{
+    try {
+        const userId=req.user.id;
+        const totalApplications = await Application.count({where:{userId:userId}});
+        const applications= await Application.findAll({
+            attributes:['status'],
+            where:{userId:userId}
+        });
+        console.log(applications);
+        let applied=0;
+        let interviewing=0;
+        let offered=0;
+        let rejected=0;
+        applications.forEach(application =>{
+            if(application.status==='Applied')
+            {
+                applied++
+            }
+            else if(application.status==='Interviewing')
+            {
+                interviewing++
+            }
+            else if(application.status==='Offer Recieved')
+            {
+                offered++
+            }
+            else
+            {
+                rejected++
+            }
+        })
+        res.status(200).json({totalApplications:totalApplications, applied:applied, interviewing:interviewing, offered:offered, rejected:rejected})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error);
+    }
+}

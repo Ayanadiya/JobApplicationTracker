@@ -11,4 +11,6 @@ router.post('/addjob', userMiddleware.userAuthenticate, joblistController.addJob
 
 router.put('/deletejob/:id', joblistController.deletejoblist);
 
+router.get('/totaljobs', userMiddleware.userAuthenticate, joblistController.gettotaljobslist);
+
 module.exports=router;

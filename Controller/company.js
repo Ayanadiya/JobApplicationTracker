@@ -63,3 +63,14 @@ exports.updateCompanydetails= async (req,res,next) => {
         res.status(500).json(error);
     }
 };
+
+exports.getTotalcompanies= async (req,res,next) => {
+    try {
+        const userId=req.user.id;
+        const totalcompanies= await Company.count({where:{userId:userId}});
+        res.status(200).json(totalcompanies);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
